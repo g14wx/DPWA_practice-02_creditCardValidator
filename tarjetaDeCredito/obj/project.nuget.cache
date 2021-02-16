@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "14AjWvsSCxXPYIofhS5NdGK71OKFe/BLWlTq3IAMQZMCH3ssVVkxoDL3cURxPb67U3kSC4NxMa7/7yxValkSjw==",
+  "success": true,
+  "projectFilePath": "/home/g14wx/RiderProjects/tarjetaDeCredito/tarjetaDeCredito/tarjetaDeCredito.csproj",
+  "expectedPackageFiles": [
+    "/home/g14wx/.nuget/packages/creditcardvalidator/2.0.1/creditcardvalidator.2.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
