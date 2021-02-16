@@ -23,14 +23,10 @@ namespace tarjetaDeCredito.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Resolve(Home home)
         {
-            return View();
-        }
-
-        public IActionResult Prueba()
-        {
-            return View();
+            
+            return View("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
