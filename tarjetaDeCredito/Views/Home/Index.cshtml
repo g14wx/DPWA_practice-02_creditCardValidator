@@ -1,29 +1,63 @@
-﻿@{
+﻿@model Home
+@{
     ViewData["Title"] = "Home Page";
+    
 }
 
 <div class="text-center flex flex-col justify-center items-center border border-1 border-black" style="height: 90vh;">
-    <!-- dark mode -->
     <form asp-action="Resolve" asp-controller="Home" class="animate__animated animate__bounceInDown max-w-2xl mx-auto sm:px-6 lg:px-8">
         <div class="overflow-hidden shadow-md text-gray-100 rounded-3xl">
             <!-- card header -->
             <div class="px-6 py-4 bg-gray-800 font-bold uppercase">
-                What is Lorem Ipsum?
+                Credit Card Validate
+                <br>
+                <span>This is @if(Model != null && !Model.isValid)
+                              {
+                                  @("NOT")
+                              } a valid credit card and is @if (Model != null && Model.isExpired)
+                                                           {
+                                                               @("not")
+                                                           } expired</span>
             </div>
     
             <!-- card body -->
             <div class="p-6 bg-gray-800 border-b border-gray-600">
-                <input class="w-full h-12 px-4 mb-2 text-lg text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" type="number" required placeholder="Credit Card Number"/> 
-               
+                <input id="cardNumber" asp-for="no" class="animate__animated w-full h-12 px-4 mb-2 text-lg text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" type="number" required placeholder="Credit Card Number"/> 
+                <input asp-for="month" class="animate__animated inline-block  h-12  mb-2 text-lg text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" type="number" required placeholder="Month" max="12" min="1" required /> 
+                <input asp-for="year" class="animate__animated inline-block h-12 mb-2 text-lg text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" type="number" required placeholder="year" max="9999" min="2000"/> 
             </div>
     
             <!-- card footer -->
-            <div class="p-6 bg-gray-800 text-right">
+            <div class="p-6 bg-gray-800 text-right flex flex-row-reverse">
                 <!-- button link -->
-                <input type="submit" class="bg-blue-500 shadow-md text-sm text-white font-bold py-3 md:px-8 px-4 hover:bg-blue-400 rounded uppercase" 
+                @if (Model != null)
+                {
+                    if (Model.brand != null && Model.brand.Length > 0)
+                    {
+                        <div class="w-20 h-15 inline-block">
+                            <img src="/imgs/@($"{Model.brand}").png" class="object-fill" alt="">
+                        </div>
+                    }
+                }
+                <input type="submit" onclick="validate(event)" class="animate__animated inline-block bg-blue-500 shadow-md text-sm text-white font-bold py-3 md:px-8 px-4 hover:bg-blue-400 rounded uppercase" 
                        value="Validate">
+                
             </div>
         </div>
     </form>
 </div>
 
+<script>
+
+function validate(e) {
+  var cardNumber = document.getElementById("cardNumber");
+  if (cardNumber.value.length <= 0){
+    e.preventDefault();
+    cardNumber.classList.add("animate__tada");
+  }
+  setTimeout(()=>{
+       cardNumber.classList.remove("animate__tada") 
+  },1000);
+}
+
+</script>
