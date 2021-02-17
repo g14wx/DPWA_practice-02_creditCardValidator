@@ -11,13 +11,24 @@
             <div class="px-6 py-4 bg-gray-800 font-bold uppercase">
                 Credit Card Validate
                 <br>
-                <span>This is @if(Model != null && !Model.isValid)
-                              {
-                                  @("NOT")
-                              } a valid credit card and is @if (Model != null && Model.isExpired)
-                                                           {
-                                                               @("not")
-                                                           } expired</span>
+                @if (Model != null)
+                {
+                    <span>This is
+                        @if (Model != null && !Model.isValid)
+                        {
+                            @("NOT")
+                        }
+                        a valid credit card and
+                        @if (Model != null && Model.isExpired)
+                        {
+                            @("isn't")
+                        }
+                        else
+                        {
+                            @("it's")
+                        }
+                        expired</span>
+                }
             </div>
     
             <!-- card body -->
